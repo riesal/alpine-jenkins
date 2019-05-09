@@ -2,7 +2,7 @@ version: "3.7"
 services:
   jenkins:
     build:
-      context: /home/ubuntu/continerd
+      context: /home/ubuntu
       dockerfile: Dockerfile
     image: jenkins/jenkins:alpine
     container_name: alpine-jenkins
