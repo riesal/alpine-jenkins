@@ -25,5 +25,5 @@ RUN apk -U --no-cache \
     && rm -rf /var/cache/* \
     && mkdir /var/cache/apk
 
-USER jenkins
-RUN  pip install redis --user
+#USER jenkins
+#RUN  pip install redis --user
