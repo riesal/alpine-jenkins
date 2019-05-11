@@ -1,5 +1,5 @@
 FROM jenkins/jenkins:alpine
-LABEL maintainer="Muhammad Fahrizal Rahman riesal[at]gmail[dot]com"
+LABEL maintainer="Muhammad Fahrizal Rahman m[dot]fahrizal[at]orami[dot]com"
 
 USER root
 
@@ -25,5 +25,11 @@ RUN apk -U --no-cache \
     && rm -rf /var/cache/* \
     && mkdir /var/cache/apk
 
-#USER jenkins
-#RUN  pip install redis --user
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+RUN apk add --update shadow \
+    && groupadd -g 50 staff \
+    && usermod -a -G staff jenkins \
+    && usermod -aG docker jenkins
+
+USER jenkins
+RUN  pip install redis --user
