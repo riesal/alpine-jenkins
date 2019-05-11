@@ -1,2 +1,2 @@
 # alpine-jenkins
-latest alpine with latest stable jenkins
+latest alpine-stable with latest jenkins-stable
