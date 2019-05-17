@@ -25,22 +25,13 @@ RUN apk -U --no-cache \
     && rm -rf /var/cache/* \
     && mkdir /var/cache/apk
 
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+#RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 RUN apk add --update shadow \
     && groupadd -g 50 staff \
     && usermod -a -G staff jenkins \
-    && usermod -aG docker jenkins
-
-# if none of those command above work, you need to:
-# - login to your container and do:
-#  - usermod -a -G staff jenkins
-#  - usermod -aG users jenkins
-#  - usermod -aG docker jenkins
-#  - reboot
-#  - restart docker service on host
-#  or.. this will work but This gives anyone root on your system. 
-#  They are able to talk to docker and create privileged containers with no restrictions.
-#  chmod 777 /var/run/docker.sock
+    && usermod -aG docker jenkins \
+    && usermod -aG ping jenkins \
+    && usermod -aG users jenkins
 
 USER jenkins
 RUN  pip install redis --user
